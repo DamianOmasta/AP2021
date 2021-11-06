@@ -20,7 +20,7 @@ class CalcCtrl {
 	public function getParams(){
 		$this->form->x = getFromRequest('x');
 		$this->form->y = getFromRequest('y');
-		$this->form->z = getFromRequest('op');
+		$this->form->z = getFromRequest('z');
 	}
 	
 	public function validate() {
