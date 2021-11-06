@@ -37,9 +37,9 @@ function process(&$form,&$infos,&$msgs,&$result){
 	$form['y'] = floatval($form['y']);
 	$form['z'] = floatval($form['z']);
 
-	$loan = $x * ($z/100);
-	$pay = $x + $loan;
-    $result = $pay / ($y * 12);
+	$loan = $form['x'] * ($form['z']/100);
+	$pay = $form['x'] + $loan;
+    $result = $pay / ($form['y'] * 12);
 }
 
 $form = null;
