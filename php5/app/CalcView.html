@@ -1,0 +1,66 @@
+{extends file=$conf->root_path|cat:"/templates/main.html"}
+
+{block name=footer}przykładowa tresć stopki wpisana do szablonu głównego z szablonu kalkulatora{/block}
+
+{block name=content}
+
+<h2 class="content-head is-center">Prosty kalkulator kredytowy</h2>
+
+<div class="pure-g">
+<div class="l-box-lrg pure-u-1 pure-u-med-2-5">
+	<form class="pure-form pure-form-stacked" action="{$conf->app_url}/app/calc.php" method="post">
+		<fieldset>
+
+	<label for="x">Jaką kwotę kredytu potrzebujesz?: </label>
+	<input class="form-control" id="x" type="text" placeholder="wartość x" name="x" value="{$form->x}">
+
+	
+	<label for="y">Podaj okres kredytowania w latach: </label>
+	<input class="form-control" id="y" type="text" placeholder="wartość y" name="y" value="{$form->y]}">
+
+	
+	<label for="z">Podaj wartość oprocentowania: </label>
+	<input class="form-control" id="z" type="text" placeholder="wartość z" name="z" value="{$form->zs}">
+
+			<button type="submit" class="pure-button">Oblicz</button>
+		</fieldset>
+	</form>
+</div>
+
+<div class="l-box-lrg pure-u-1 pure-u-med-3-5">
+
+{* wyświeltenie listy błędów, jeśli istnieją *}
+{if $msgs->isError()}
+	<h4>Wystąpiły błędy: </h4>
+	<ol class="err">
+	{foreach $msgs->getErrors() as $err}
+	{strip}
+		<li>{$err}</li>
+	{/strip}
+	{/foreach}
+	</ol>
+{/if}
+
+{* wyświeltenie listy informacji, jeśli istnieją *}
+{if $msgs->isInfo()}
+	<h4>Informacje: </h4>
+	<ol class="inf">
+	{foreach $msgs->getInfos() as $inf}
+	{strip}
+		<li>{$inf}</li>
+	{/strip}
+	{/foreach}
+	</ol>
+{/if}
+
+{if isset($res->result)}
+	<h4>Wynik</h4>
+	<p class="res">
+	{$res->result}
+	</p>
+{/if}
+
+</div>
+</div>
+
+{/block}
